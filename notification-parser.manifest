@@ -1,0 +1,15 @@
+<manifest>
+	<define>
+		<domain name="notification-parser" policy="restricted" />
+		<provide>
+			<label name="notification-parser::db" />
+		</provide>
+	</define>
+	<request>
+		<domain name="_"/>
+	</request>
+	<assign>
+		<filesystem path="/opt/usr/dbspace/.notification_parser.db" label="notification-parser::db" />
+		<filesystem path="/opt/usr/dbspace/.notification_parser.db-journal" label="notification-parser::db" />
+	</assign>
+</manifest>
