@@ -1,0 +1,14 @@
+# Package Information for pkg-config
+
+prefix=@PREFIX@
+exec_prefix=/usr
+libdir=/usr/etc/package-manager/parserlib
+includedir=
+
+Name: @PC_NAME@
+Description: @PACKAGE_DESCRIPTION@
+Version: @VERSION@
+Requires: @PC_REQUIRED@ 
+Libs: -L${libdir} @PC_LDFLAGS@
+Cflags: -I${includedir}
+
