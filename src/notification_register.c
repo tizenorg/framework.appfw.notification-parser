@@ -1,19 +1,18 @@
 /*
- * Copyright (c) 2000 - 2013 Samsung Electronics Co., Ltd. All rights reserved.
+ * Copyright 2013  Samsung Electronics Co., Ltd
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Flora License, Version 1.1 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * http://floralicense.org/license/
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
-*/
+ */
 
 #include <stdio.h>
 #include <errno.h>
@@ -417,21 +416,16 @@ int notification_install_data(xmlDocPtr docPtr, const char* pPkgId)
 	}
 
 	xmlNodePtr node = xmlFirstElementChild(xmlDocGetRootElement(docPtr));
-	if (node == NULL)
+	if (node == NULL) 
 	{
 		ErrPrint("xmlDocGetRootElement failed.\n");
-		db_disconnect();
 		return -EINVAL;
 	}
-
+	
 	struct notification_setting* pNotiSetting = calloc(1, sizeof(struct notification_setting));
-	if (pNotiSetting == NULL)
-	{
-		ErrPrint("out of memory.\n");
-		xmlFreeDoc(docPtr);
-		db_disconnect();
+
+	if (!pNotiSetting)
 		return -ENOMEM;
-	}
 
 	pNotiSetting->pAppId = xmlGetProp(node, (const xmlChar*)"appid");
 	if (pNotiSetting->pAppId == NULL)
@@ -439,7 +433,6 @@ int notification_install_data(xmlDocPtr docPtr, const char* pPkgId)
 		ErrPrint("xmlGetProp failed.\n");
 		xmlFreeDoc(docPtr);
 		free(pNotiSetting);
-		db_disconnect();
 		return -EINVAL;
 	}
 

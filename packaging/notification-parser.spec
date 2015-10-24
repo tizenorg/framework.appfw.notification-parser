@@ -4,7 +4,7 @@ Version:	1.2.2.1
 Release:	1
 VCS:     framework/appfw/notification-parser#38642594039ce772cb046363f5ebb4d331308c2e
 Group:		System/Libraries
-License:	Apache
+License:	Flora License
 Source0:	%{name}-%{version}.tar.gz
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(dlog)
@@ -41,7 +41,7 @@ make %{?jobs:-j%jobs}
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/license
-cp LICENSE %{buildroot}/usr/share/license/%{name}
+cp %{_builddir}/%{name}-%{version}/LICENSE.Flora  %{buildroot}/usr/share/license/%{name}
 
 %make_install
 mkdir -p %{buildroot}/opt/usr/dbspace
@@ -60,8 +60,7 @@ fi
 %manifest notification-parser.manifest
 /usr/share/license/%{name}
 /usr/etc/package-manager/parserlib/libnotifications.so*
-/opt/usr/dbspace/.notification_parser.db
-/opt/usr/dbspace/.notification_parser.db-journal
+/opt/usr/dbspace/.notification_parser.db*
 
 %files devel
 %{_libdir}/pkgconfig/notification-parser.pc
